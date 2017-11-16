@@ -1,0 +1,48 @@
+package org.firstinspires.ftc.teamcode;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+
+/**
+ * Created by Nicholas B.
+ */
+
+@Autonomous
+public class Auto extends LinearOpMode {
+    private DcMotor FrontL;
+    private DcMotor FrontR;
+    private DcMotor BackL;
+    private DcMotor BackR;
+
+
+    @Override
+    public void runOpMode() {
+        FrontL = hardwareMap.dcMotor.get("FrontL");
+        FrontR = hardwareMap.dcMotor.get("FrontR");
+        BackL = hardwareMap.dcMotor.get("BackL");
+        BackR = hardwareMap.dcMotor.get("BackR");
+        FrontL.setDirection(DcMotorSimple.Direction.FORWARD);
+        FrontR.setDirection(DcMotorSimple.Direction.FORWARD);
+        BackR.setDirection(DcMotorSimple.Direction.FORWARD);
+        BackL.setDirection(DcMotorSimple.Direction.FORWARD);
+
+        waitForStart();
+
+        // run until the end of the match (driver presses STOP)
+        while (opModeIsActive()) {
+            telemetry.addData("Status", "Running");
+            telemetry.update();
+         FrontR.setPower(0b1100100);
+            FrontL.setPower(0b1100100);
+            BackR.setPower(0b1100100);
+            BackL.setPower(0b1100100);
+
+            if (!opModeIsActive ()) {
+telemetry.addData("Hello" , "DeepLearing");
+continue;   }
+        }
+
+        }
+    }
