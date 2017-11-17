@@ -1,0 +1,22 @@
+com.qualcomm.robotcore.eventloop.opmode
+
+    private DcMotor motorTest;
+    private Servo servoT;
+
+    @Override
+    public void runOpMode() {
+        motorTest = hardwareMap.dcMotor.get("motorTest");
+        servoT = hardwareMap.servo.get("servoTest");
+
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
+
+        // run until the end of the match (driver presses STOP)
+        while (opModeIsActive()) {
+            telemetry.addData("Status", "Running");
+            telemetry.update();
+
+        }
+    }
