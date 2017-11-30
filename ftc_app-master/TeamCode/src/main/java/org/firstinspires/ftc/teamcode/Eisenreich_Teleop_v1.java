@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by Colton on 11/21/2017.
  */
+@TeleOp
 
 public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
@@ -60,7 +62,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
             drive.mechanumDrive(LStickY, LStickX, RStickX);
 
             Spool.setPower(spool);
-            
+
             if(Grab > 1){
                 lGrab.setPosition(1);
                 rGrab.setPosition(0);
