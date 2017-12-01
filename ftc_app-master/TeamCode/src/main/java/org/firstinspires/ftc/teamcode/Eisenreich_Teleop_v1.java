@@ -18,7 +18,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
     private DcMotor BackR;
     private Servo lGrab;
     private Servo rGrab;
-    private DcMotor Spool;
+    //private DcMotor Spool;
 
     @Override
     public void runOpMode() {
@@ -33,8 +33,8 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        Spool = hardwareMap.dcMotor.get("Spool");
-        Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //Spool = hardwareMap.dcMotor.get("Spool");
+        //Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         RobotDrive drive = new RobotDrive(FrontL, FrontR, BackL, BackR);
 
@@ -51,8 +51,10 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         double LStickX = gamepad1.left_stick_x;
         double RStickX = gamepad1.right_stick_x;
         double Grab = gamepad1.right_trigger;
-        double spool = gamepad1.left_trigger;
+        //double spool = gamepad1.left_trigger;
 
+        lGrab.setPosition(.5);
+        rGrab.setPosition(.5);
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
@@ -61,9 +63,9 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             drive.mechanumDrive(LStickY, LStickX, RStickX);
 
-            Spool.setPower(spool);
+            //Spool.setPower(spool);
 
-            if(Grab > 1){
+            if(Grab >= 1){
                 lGrab.setPosition(1);
                 rGrab.setPosition(0);
             }
