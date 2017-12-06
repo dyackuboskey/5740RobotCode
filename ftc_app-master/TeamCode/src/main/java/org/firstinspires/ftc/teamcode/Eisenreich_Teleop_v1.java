@@ -65,6 +65,9 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             //Spool.setPower(spool);
 
+            lGrab.setPosition((.5*Grab)+.5);
+            rGrab.setPosition((-.5*Grab)+1);
+
             if(Grab >= 1){
                 lGrab.setPosition(1);
                 rGrab.setPosition(0);
