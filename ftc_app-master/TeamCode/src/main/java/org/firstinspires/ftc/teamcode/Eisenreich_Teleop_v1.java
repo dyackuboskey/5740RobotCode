@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 /**
@@ -18,7 +19,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
     private DcMotor BackR;
     private Servo lGrab;
     private Servo rGrab;
-    //private DcMotor Spool;
+    private DcMotor Spool;
 
     @Override
     public void runOpMode() {
@@ -33,8 +34,8 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        //Spool = hardwareMap.dcMotor.get("Spool");
-        //Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Spool = hardwareMap.dcMotor.get("Spool");
+        Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         RobotDrive drive = new RobotDrive(FrontL, FrontR, BackL, BackR);
 
@@ -51,7 +52,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         double LStickX = gamepad1.left_stick_x;
         double RStickX = gamepad1.right_stick_x;
         double Grab = gamepad1.right_trigger;
-        //double spool = gamepad1.left_trigger;
+        double spool = gamepad1.left_trigger;
 
         lGrab.setPosition(.5);
         rGrab.setPosition(.5);
@@ -63,20 +64,17 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             drive.mechanumDrive(LStickY, LStickX, RStickX);
 
-            //Spool.setPower(spool);
+            if(gamepad1.right_bumper == true){
+                Spool.setDirection(DcMotor.Direction.REVERSE);
+            }
+            else{
+                Spool.setDirection(DcMotorSimple.Direction.FORWARD);
+            }
+
+            Spool.setPower(spool);
 
             lGrab.setPosition((.5*Grab)+.5);
             rGrab.setPosition((-.5*Grab)+1);
-
-            if(Grab >= 1){
-                lGrab.setPosition(1);
-                rGrab.setPosition(0);
-            }
-            else{
-                lGrab.setPosition(.5);
-                rGrab.setPosition(.5);
-            }
-
 
         }
     }
