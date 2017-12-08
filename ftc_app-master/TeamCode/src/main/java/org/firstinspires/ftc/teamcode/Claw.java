@@ -19,8 +19,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Claw {
     Servo lGrab , rGrab;
     private boolean Btoggle;
-    private double lGrablastPos = 0;
-    private double rGrablastPos = 0;
+    private double lGrablastPos;
+    private double rGrablastPos;
 
     public Claw (Servo lGrab,Servo rGrab ){
         this.lGrab = lGrab;
@@ -49,7 +49,6 @@ public class Claw {
         }
         else{
             grab(Grab);
-
         }
     }
 }

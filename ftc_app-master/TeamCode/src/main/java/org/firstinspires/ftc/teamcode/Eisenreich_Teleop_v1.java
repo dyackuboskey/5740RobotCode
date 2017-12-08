@@ -72,7 +72,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             drive.mechanumDrive(LStickY, LStickX, RStickX);
 
-            claw.toggleGrab(Grab, toggleButton);
+            //claw.toggleGrab(Grab, toggleButton);
 
             if(gamepad1.right_bumper){
                 Spool.setDirection(DcMotor.Direction.REVERSE);
