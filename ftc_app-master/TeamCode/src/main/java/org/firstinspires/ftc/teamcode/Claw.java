@@ -9,6 +9,11 @@ import com.qualcomm.robotcore.hardware.Servo;
  *  grab (a regular claw operation)
  *  toggleGrab(the claw sets to the normal position of the trigger but if the right bumper is pressed the claw stays
  *  at the last position of the trigger)
+ *
+ *  Input:
+ *      A double for position
+*   Output:
+ *      A servo position between 5 and 1 for the left and .5 and 0 for the right
  */
 
 public class Claw {

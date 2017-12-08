@@ -74,7 +74,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             claw.toggleGrab(Grab, toggleButton);
 
-            if(gamepad1.right_bumper == true){
+            if(gamepad1.right_bumper){
                 Spool.setDirection(DcMotor.Direction.REVERSE);
                 outSpool.setDirection(DcMotor.Direction.FORWARD);
             }
@@ -85,10 +85,10 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             Spool.setPower(spool);
 
-            if (up == true){
+            if (up){
                 outSpool.setPower(.5);
             }
-            else if (down == true){
+            else if (down){
                 outSpool.setPower(-.5);
             }
             else{
