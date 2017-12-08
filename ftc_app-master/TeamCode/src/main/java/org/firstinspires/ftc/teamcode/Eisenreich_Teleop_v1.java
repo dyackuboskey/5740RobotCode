@@ -30,6 +30,8 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         BackL = hardwareMap.dcMotor.get("BackL");
         BackR = hardwareMap.dcMotor.get("BackR");
 
+        FrontR.setDirection(DcMotorSimple.Direction.REVERSE);
+        BackR.setDirection(DcMotorSimple.Direction.REVERSE);
         FrontL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FrontR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -50,8 +52,8 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        lGrab.setPosition(.5);
-        rGrab.setPosition(.5);
+        //lGrab.setPosition(.5);
+        //rGrab.setPosition(.5);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
