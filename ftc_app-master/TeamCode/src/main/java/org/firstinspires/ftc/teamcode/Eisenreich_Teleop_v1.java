@@ -42,10 +42,10 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
         RobotDrive drive = new RobotDrive(FrontL, FrontR, BackL, BackR);
 
-        Claw claw = new Claw(lGrab, rGrab);
-
         lGrab = hardwareMap.servo.get("LeftGrab");
         rGrab = hardwareMap.servo.get("RightGrab");
+
+        Claw claw = new Claw(lGrab, rGrab);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -72,7 +72,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             drive.mechanumDrive(LStickY, LStickX, RStickX);
 
-            //claw.toggleGrab(Grab, toggleButton);
+            claw.toggleGrab(Grab, toggleButton);
 
             if(gamepad1.right_bumper){
                 Spool.setDirection(DcMotor.Direction.REVERSE);
