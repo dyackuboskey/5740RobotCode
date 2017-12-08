@@ -9,8 +9,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * Created by Colton on 11/21/2017.
  */
-@TeleOp
 
+@TeleOp
 public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
     private DcMotor FrontL;
@@ -20,6 +20,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
     private Servo lGrab;
     private Servo rGrab;
     private DcMotor Spool;
+    private DcMotor outSpool;
 
     @Override
     public void runOpMode() {
@@ -35,9 +36,13 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         Spool = hardwareMap.dcMotor.get("Spool");
-        Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        outSpool = hardwareMap.dcMotor.get("outSpool");
+        Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        outSpool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         RobotDrive drive = new RobotDrive(FrontL, FrontR, BackL, BackR);
+
+        Claw claw = new Claw(lGrab, rGrab);
 
         lGrab = hardwareMap.servo.get("LeftGrab");
         rGrab = hardwareMap.servo.get("RightGrab");
@@ -45,37 +50,50 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
-
-        double LStickY = gamepad1.left_stick_y;
-        double LStickX = gamepad1.left_stick_x;
-        double RStickX = gamepad1.right_stick_x;
-        double Grab = gamepad1.right_trigger;
-        double spool = gamepad1.left_trigger;
-
         lGrab.setPosition(.5);
         rGrab.setPosition(.5);
+
+        // Wait for the game to start (driver presses PLAY)
+        waitForStart();
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
             telemetry.addData("Status", "Running");
             telemetry.update();
 
+            double LStickY = gamepad1.left_stick_y;
+            double LStickX = gamepad1.left_stick_x;
+            double RStickX = gamepad1.right_stick_x;
+            double Grab = gamepad1.left_trigger;
+            double spool = gamepad1.right_trigger;
+            boolean toggleButton = gamepad1.left_bumper;
+            boolean up = gamepad1.dpad_up;
+            boolean down = gamepad1.dpad_down;
+
             drive.mechanumDrive(LStickY, LStickX, RStickX);
+
+            claw.toggleGrab(Grab, toggleButton);
 
             if(gamepad1.right_bumper == true){
                 Spool.setDirection(DcMotor.Direction.REVERSE);
+                outSpool.setDirection(DcMotor.Direction.FORWARD);
             }
             else{
                 Spool.setDirection(DcMotorSimple.Direction.FORWARD);
+                outSpool.setDirection(DcMotorSimple.Direction.FORWARD);
             }
 
             Spool.setPower(spool);
 
-            lGrab.setPosition((.5*Grab)+.5);
-            rGrab.setPosition((-.5*Grab)+1);
-
+            if (up == true){
+                outSpool.setPower(.5);
+            }
+            else if (down == true){
+                outSpool.setPower(-.5);
+            }
+            else{
+                outSpool.setPower(0);
+            }
         }
     }
 }
