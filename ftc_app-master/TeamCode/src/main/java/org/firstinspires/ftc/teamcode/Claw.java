@@ -30,7 +30,7 @@ public class Claw {
 
     public void grab (double Grab){
         lGrab.setPosition((.5*-Grab)+.5);
-        rGrab.setPosition((-.5*Grab)+1);
+        rGrab.setPosition((.5*Grab)+.5);
     }
 
     public void toggleGrab (double Grab, boolean toggleButton){
@@ -40,7 +40,7 @@ public class Claw {
         }
         else{
             lGrab.setPosition((.5*-Grab)+.5);
-            rGrab.setPosition((-.5*Grab)+1);
+            rGrab.setPosition((.5*Grab)+.5);
         }
         if (toggleButton){
             if (Btoggle){
@@ -49,7 +49,7 @@ public class Claw {
             else if (!Btoggle) {
                 Btoggle = true;
                 lGrablastPos = (.5*-Grab)+.5;
-                rGrablastPos = (-.5*Grab)+1;
+                rGrablastPos = (.5*Grab)+.5;
             }
         }
     }
