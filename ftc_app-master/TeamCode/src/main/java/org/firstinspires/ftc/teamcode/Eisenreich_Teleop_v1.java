@@ -21,6 +21,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
     private Servo rGrab;
     private DcMotor Spool;
     private DcMotor outSpool;
+    private Servo cArm;
 
     @Override
     public void runOpMode() {
@@ -46,14 +47,15 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
         lGrab = hardwareMap.servo.get("LeftGrab");
         rGrab = hardwareMap.servo.get("RightGrab");
+        cArm = hardwareMap.servo.get("Arm");
 
         Claw claw = new Claw(lGrab, rGrab);
 
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
-
         lGrab.setPosition(.5);
         rGrab.setPosition(.5);
+
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -76,6 +78,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
             claw.toggleGrab(Grab, toggleButton);
 
+            //this is to pull the arm back in
             if(gamepad1.right_bumper){
                 Spool.setDirection(DcMotor.Direction.REVERSE);
                 outSpool.setDirection(DcMotor.Direction.FORWARD);
@@ -86,7 +89,9 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
             }
 
             Spool.setPower(spool);
+            outSpool.setPower(-spool);
 
+            //this is to move the arm up and down
             if (up){
                 outSpool.setPower(.5);
             }

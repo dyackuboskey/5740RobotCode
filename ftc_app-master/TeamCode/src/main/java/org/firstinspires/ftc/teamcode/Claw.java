@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Created by Colton on 12/8/2017.
+ *
  * This code is for the claw on the 2017 ftc robot
  * There are two options:
  *  grab (a regular claw operation)
@@ -28,7 +29,7 @@ public class Claw {
     }
 
     public void grab (double Grab){
-        lGrab.setPosition((-.5*Grab)+1);
+        lGrab.setPosition((.5*-Grab)+.5);
         rGrab.setPosition((-.5*Grab)+1);
     }
 
@@ -38,7 +39,7 @@ public class Claw {
             rGrab.setPosition(rGrablastPos);
         }
         else{
-            lGrab.setPosition((-.5*Grab)+1);
+            lGrab.setPosition((.5*-Grab)+.5);
             rGrab.setPosition((-.5*Grab)+1);
         }
         if (toggleButton){
@@ -47,7 +48,7 @@ public class Claw {
             }
             else if (!Btoggle) {
                 Btoggle = true;
-                lGrablastPos = (-.5*Grab)+1;
+                lGrablastPos = (.5*-Grab)+.5;
                 rGrablastPos = (-.5*Grab)+1;
             }
         }
