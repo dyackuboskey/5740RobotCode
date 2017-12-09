@@ -63,7 +63,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
             telemetry.addData("Status", "Running");
             telemetry.update();
 
-            double LStickY = gamepad1.left_stick_y;
+            double LStickY = -gamepad1.left_stick_y;
             double LStickX = gamepad1.left_stick_x;
             double RStickX = gamepad1.right_stick_x;
             double Grab = gamepad1.left_trigger;
