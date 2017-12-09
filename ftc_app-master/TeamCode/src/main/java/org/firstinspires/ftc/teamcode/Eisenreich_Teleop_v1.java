@@ -52,8 +52,8 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        //lGrab.setPosition(.5);
-        //rGrab.setPosition(.5);
+        lGrab.setPosition(.5);
+        rGrab.setPosition(.5);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
