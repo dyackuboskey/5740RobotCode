@@ -53,6 +53,7 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
         lGrab.setPosition(.5);
         rGrab.setPosition(.5);
+        cArm.setPosition(.5);
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
