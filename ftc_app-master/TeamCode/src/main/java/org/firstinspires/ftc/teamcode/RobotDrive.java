@@ -41,4 +41,10 @@ public class RobotDrive {
         BackL.setPower(((Lsticky-gyro)-(.75*(Lstickx+gyro)))+Rstickx);
         BackR.setPower(((Lsticky-gyro)+(.75*(Lstickx+gyro)))-Rstickx);
     }
+    public void encoderDrive (int rotationsF, int rotationsS, int rotationsT){
+        FrontL.setTargetPosition((rotationsF+rotationsS)+rotationsT);
+        FrontR.setTargetPosition((rotationsF-rotationsS)-rotationsT);
+        BackL.setTargetPosition((rotationsF-rotationsS)+rotationsT);
+        BackR.setTargetPosition((rotationsF+rotationsS)-rotationsT);
+    }
 }
