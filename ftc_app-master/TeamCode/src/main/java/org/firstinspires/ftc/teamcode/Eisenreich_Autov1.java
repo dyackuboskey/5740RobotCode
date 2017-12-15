@@ -75,6 +75,8 @@ public class Eisenreich_Autov1 extends LinearOpMode {
             drive.encoderDrive(3,0,0);
             sleep(1000);
             drive.encoderDrive(0,3,0);
+            sleep(1000);
+            drive.encoderDrive(0,0,1);
 
         }
     }
