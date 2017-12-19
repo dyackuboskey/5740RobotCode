@@ -40,6 +40,11 @@ public class Eisenreich_Autov1 extends LinearOpMode {
         BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        FrontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        BackL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        BackR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         Spool = hardwareMap.dcMotor.get("Spool");
         outSpool = hardwareMap.dcMotor.get("outSpool");
         Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -71,6 +76,8 @@ public class Eisenreich_Autov1 extends LinearOpMode {
             claw.grab(1);
             sleep(50);
             cArm.setPosition(.5);
+            sleep(50);
+            cArm.setPosition(1);
             sleep(50);
             drive.encoderDrive(3,0,0);
             sleep(1000);
