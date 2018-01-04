@@ -40,8 +40,8 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
 
         Spool = hardwareMap.dcMotor.get("Spool");
         outSpool = hardwareMap.dcMotor.get("outSpool");
-        Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
-        outSpool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        outSpool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         RobotDrive drive = new RobotDrive(FrontL, FrontR, BackL, BackR);
 
@@ -83,25 +83,34 @@ public class Eisenreich_Teleop_v1 extends LinearOpMode {
             if(gamepad1.right_bumper){
                 Spool.setDirection(DcMotor.Direction.REVERSE);
                 outSpool.setDirection(DcMotor.Direction.FORWARD);
+                Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+                outSpool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+                Spool.setPower(spool);
+                outSpool.setPower(-spool);
             }
             else{
                 Spool.setDirection(DcMotorSimple.Direction.FORWARD);
                 outSpool.setDirection(DcMotorSimple.Direction.FORWARD);
+                Spool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                outSpool.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+                Spool.setPower(spool);
+                outSpool.setPower(-spool);
             }
 
-            Spool.setPower(spool);
-            outSpool.setPower(-spool);
+
 
             //this is to move the arm up and down
             if (up){
-                outSpool.setPower(.5);
+                outSpool.setPower(-.5);
             }
             else if (down){
-                outSpool.setPower(-.5);
+                outSpool.setPower(.5);
             }
             else{
                 outSpool.setPower(0);
             }
+            //Spool.setPower(spool);
+            //outSpool.setPower(-spool);
         }
     }
 }
