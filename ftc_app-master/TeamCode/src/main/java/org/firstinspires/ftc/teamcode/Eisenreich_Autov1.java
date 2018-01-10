@@ -40,10 +40,10 @@ public class Eisenreich_Autov1 extends LinearOpMode {
         BackL.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BackR.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        FrontL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        FrontR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        BackL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        BackR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FrontL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        FrontR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        BackL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        BackR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         Spool = hardwareMap.dcMotor.get("Spool");
         outSpool = hardwareMap.dcMotor.get("outSpool");

@@ -46,5 +46,9 @@ public class RobotDrive {
         FrontR.setTargetPosition((rotationsF-rotationsS)-rotationsT);
         BackL.setTargetPosition((rotationsF-rotationsS)+rotationsT);
         BackR.setTargetPosition((rotationsF+rotationsS)-rotationsT);
+        FrontL.setPower(.95);
+        FrontR.setPower(.95);
+        BackL.setPower(.95);
+        BackR.setPower(.95);
     }
 }
